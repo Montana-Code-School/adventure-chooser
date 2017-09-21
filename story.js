@@ -79,7 +79,7 @@ function countEndings(action) {
   }
   return endings;
 }
-
+/*
 function factorial(num) {
   if (num === 0) {
     return 1;
@@ -93,7 +93,7 @@ function sum(arr) {
   }
   return arr[0] + sum(arr.slice(1));
 }
-
+*/
 function renderAction(action) {
   document.getElementById("text").innerHTML = action.text;
   var options = document.getElementById("options");
@@ -104,15 +104,15 @@ function renderAction(action) {
     options.innerHTML = "the end";
   } else {
     for (let i = 0; i < action.options.length; i++) {
-      var node = document.createElement("button");
+      var button = document.createElement("button");
       var textnode = document.createTextNode(action.options[i].prompt);
-      node.addEventListener("click", function() {
+      button.addEventListener("click", function() {
         renderAction(action.options[i].action);
       });
-      node.appendChild(textnode);
-      options.appendChild(node);
+      button.appendChild(textnode);
+      options.appendChild(button);
     }
   }
 }
 
-renderAction(storyTree);
+renderAction(parsedStory);
