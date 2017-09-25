@@ -115,4 +115,18 @@ function renderAction(action) {
   }
 }
 
-renderAction(parsedStory);
+$.ajax("/storyList").done(function(result) {
+  var options = $("#options");
+  for (let key in result) {
+    var button = document.createElement("button");
+    var textnode = document.createTextNode(result[key].title);
+    button.addEventListener("click", function() {
+      console.log(result[key]);
+      renderAction(parseStory(result[key].text));
+    });
+    button.appendChild(textnode);
+    options.append(button);
+  }
+});
+
+//renderAction(parsedStory);
