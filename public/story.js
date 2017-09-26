@@ -115,7 +115,7 @@ function renderAction(action) {
   }
 }
 
-$.ajax("/storyList").done(function(result) {
+$.ajax({ method: "get", url: "/cya" }).done(function(result) {
   var options = $("#options");
   for (let key in result) {
     var button = document.createElement("button");

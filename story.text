@@ -1,0 +1,29 @@
+`##<storyTree> You are walking in the forest and you see a robot and this is totally working.
+   -O<screamRun> Scream and run away.
+   -O<stepOn> Step on it.
+   -O<eatIt> Eat it.
+
+##<screamRun> You trip over a stump.
+   -O<impaled> You impale yourself on a sharp stick.
+   -O<mineshaft> You fall down a mine shaft and hit your head on a rock.
+
+##<impaled> The robot and it's friends find you. Your body is never found.
+
+##<mineshaft> You are eaten by a grue
+
+##<stepOn> You shrink to size of robot.
+   -O<climbingBug> The robot climbs on you.
+   -O<talkativeBug> The robot has a conversation with you.
+
+##<climbingBug> The robot hugs you...to death. First contact went well.
+
+##<talkativeBug> The robot makes you question your existence.
+
+##<eatIt> You get superpowers.
+   -O<superPowerEvil> You go mad with the power.
+   -O<superPowerGood> You use your powers to save humanity.
+
+##<superPowerEvil> You blow up the world... The end.
+
+##<superPowerGood> You find a cure for Global Warming. Al Gore would be proud.
+`
