@@ -38,6 +38,7 @@ function parseStory(story) {
   //console.log(regExpTest());
   var firstAction;
   var actionObj = {};
+  //determining the first text to display
   for (var i = 0; i < actions.length; i++) {
     let action = parseAction(actions[i]);
     if (i === 0) {
@@ -45,6 +46,8 @@ function parseStory(story) {
     }
     actionObj[action.label] = action;
   }
+
+  //compiling our object into a tree
   for (var label in actionObj) {
     let action = actionObj[label];
     for (var i = 0; i < action.options.length; i++) {
@@ -57,27 +60,24 @@ function parseStory(story) {
 }
 
 function parseAction(action) {
-  /*
-  This regular expression - Explained!
-  / - start of regular expression
-  ^ - symbol meaning start of line
-  < - match an angle bracket
-  ( - start a group that we can capture the output
-  [^<>]* - zero or more non-angle bracket characters
-  ) - end of a group
-  > - match an angle bracket
-  ([\s\S]* - match all characters including newlines
-  */
+  //separating the actions from labels, putting the rest in an array
   var brackets = /^<([^<>]*)>([\s\S]*)/;
   var match = action.match(brackets);
+  //cuts the labels out from story
   var label = match[1];
+  //sets the first elements(labels) = label
   var rest = match[2].trim();
+  //set second elements(options) = rest
   var actionFields = rest.split("-O");
+  //splits the options from 'rest'
   var text = actionFields.shift().trim();
+  //sets actionFields to the text var, trims white scace, deletes first element
   var options = [];
+  //initiates empty array that the for loop then adds each option to said array
   for (var i = 0; i < actionFields.length; i++) {
     options.push(parseOption(actionFields[i]));
   }
+  // puts the variables we created in an object
   return {
     text: text,
     label: label,
@@ -86,6 +86,7 @@ function parseAction(action) {
 }
 
 function parseOption(option) {
+  //separating results(text?) from options
   var brackets = /^<([^<>]*)>([\s\S]*)/;
   var match = option.match(brackets);
   var label = match[1];
@@ -97,8 +98,3 @@ function parseOption(option) {
 }
 
 var parsedStory = parseStory(storyString);
-
-//var Action(str) {
-//  text: "";
-//  options: <>;
-//}

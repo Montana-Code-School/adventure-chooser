@@ -17,7 +17,7 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", function(req, res) {
-  console.log("A dark horse appears");
+  console.log("A dark horse appears", __dirname);
   res.sendFile(path.join(__dirname, "story.html"));
 });
 
@@ -47,10 +47,49 @@ app.get("/cya", function(req, res) {
 
 app.post("/cya", function(req, res) {
   console.log("create your story!", req.body);
-  stories[req.body.key] = req.body;
-  res.json({});
+  if (stories[req.body.key] === undefined) {
+    stories[req.body.key] = req.body;
+    res.json({
+      result: "Successful.",
+      success: true
+    });
+  } else {
+    res.json({
+      result: "Failed to update. Story already exists.",
+      success: false
+    });
+  }
 });
-app.put("/cya");
-app.delete("/cya");
+
+app.put("/cya", function(req, res) {
+  console.log("edit your story", req.body);
+  if (stories[req.body.key] !== undefined && req.body.title !== undefined) {
+    stories[req.body.key].title = req.body.title;
+    res.json({
+      result: "success, title changed.",
+      success: true
+    });
+  } else {
+    res.json({
+      result: "Failed",
+      success: false
+    });
+  }
+});
+
+app.delete("/cya", function(req, res) {
+  if (stories[req.body.key] !== undefined) {
+    delete stories[req.body.key];
+    res.json({
+      result: "Successful Delete!!",
+      success: true
+    });
+  } else {
+    res.json({
+      result: "No Story Exists!",
+      success: false
+    });
+  }
+});
 
 app.listen(3000);

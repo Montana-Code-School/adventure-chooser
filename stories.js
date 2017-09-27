@@ -55,5 +55,4 @@ var stories = {
     text: gabeStory
   }
 };
-
 module.exports = stories;
