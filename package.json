@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Montana-Code-School/adventure-chooser#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.15.5"
+    "express": "^4.15.5",
+    "mongoose": "^4.11.13"
   }
 }

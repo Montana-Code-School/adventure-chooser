@@ -1,3 +1,6 @@
+var mongoose = require("mongoose");
+var Cya = require("./models/cya");
+
 var bugStory = `##<storyTree> You are walking in the forest and you see a bug and this is totally working.
    -O<screamRun> Scream and run away.
    -O<stepOn> Step on it.
@@ -45,14 +48,31 @@ var gabeStory = `##<storyTree>   "You are a peasant living on a farm in the smal
 
 var stories = {
   bug: {
-    key: "bug",
     title: "A bug's life (AND DEATH)",
     text: bugStory
   },
   gabe: {
-    key: "gabe",
     title: "Life",
     text: gabeStory
   }
 };
-module.exports = stories;
+
+mongoose.connect("mongodb://localhost/cya");
+var db = mongoose.connection;
+db.once("open", function() {
+  console.log("connected to database, creating records");
+  var gabe = new Cya({
+    title: "Life",
+    text: gabeStory
+  });
+  gabe.save(function(err, resp) {
+    console.log("saved gabe", resp);
+  });
+  var bug = new Cya({
+    title: "A bug's life (AND DEATH)",
+    text: bugStory
+  });
+  bug.save(function(err, resp) {
+    console.log("saved bug", resp);
+  });
+});

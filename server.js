@@ -1,20 +1,13 @@
 var express = require("express");
 var path = require("path");
-var stories = require("./stories");
 var bodyParser = require("body-parser");
-
+var mongoose = require("mongoose");
+var Cya = require("./models/cya");
+mongoose.connect("mongodb://localhost/cya");
 var app = express();
-
+var stories = {};
 app.use(express.static("public"));
 app.use(bodyParser.json());
-
-app.use(function(req, res, next) {
-  setTimeout(function() {
-    console.log("It's a race.");
-    next();
-  }, 1000);
-  console.log("Who will win.");
-});
 
 app.get("/", function(req, res) {
   console.log("A dark horse appears", __dirname);
@@ -42,23 +35,23 @@ app.post("/Hi", function(req, res) {
 });
 
 app.get("/cya", function(req, res) {
-  res.json(stories);
+  Cya.find(function(err, cyas) {
+    res.json(cyas);
+  });
 });
 
 app.post("/cya", function(req, res) {
-  console.log("create your story!", req.body);
-  if (stories[req.body.key] === undefined) {
-    stories[req.body.key] = req.body;
-    res.json({
-      result: "Successful.",
-      success: true
-    });
-  } else {
-    res.json({
-      result: "Failed to update. Story already exists.",
-      success: false
-    });
-  }
+  var newCya = new Cya({
+    title: req.body.title,
+    text: req.body.text
+  });
+  newCya.save(function(err, result) {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.put("/cya", function(req, res) {
