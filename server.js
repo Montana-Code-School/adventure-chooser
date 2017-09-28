@@ -41,6 +41,8 @@ app.get("/cya", function(req, res) {
 });
 
 app.post("/cya", function(req, res) {
+  console.log("body", req.body);
+
   var newCya = new Cya({
     title: req.body.title,
     text: req.body.text
@@ -55,34 +57,26 @@ app.post("/cya", function(req, res) {
 });
 
 app.put("/cya", function(req, res) {
-  console.log("edit your story", req.body);
-  if (stories[req.body.key] !== undefined && req.body.title !== undefined) {
-    stories[req.body.key].title = req.body.title;
-    res.json({
-      result: "success, title changed.",
-      success: true
-    });
-  } else {
-    res.json({
-      result: "Failed",
-      success: false
-    });
-  }
+  Cya.update({ _id: req.body.cyaID }, { title: req.body.title }, function(
+    err,
+    result
+  ) {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.delete("/cya", function(req, res) {
-  if (stories[req.body.key] !== undefined) {
-    delete stories[req.body.key];
-    res.json({
-      result: "Successful Delete!!",
-      success: true
-    });
-  } else {
-    res.json({
-      result: "No Story Exists!",
-      success: false
-    });
-  }
+  Cya.remove({ _id: req.body.cyaID }, function(err, result) {
+    if (err) {
+      res.status(500).json(err);
+    } else {
+      res.json(result);
+    }
+  });
 });
 
 app.listen(3000);

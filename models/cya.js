@@ -9,3 +9,13 @@ var cyaSchema = mongoose.Schema({
 var Cya = mongoose.model("Cya", cyaSchema);
 
 module.exports = Cya;
+
+var ActionSchema = {
+  text: { type: String, required: true },
+  options: [Object]
+};
+
+var OptionsSchema = {
+  prompt: { type: String, required: true },
+  action: ActionSchema
+};
