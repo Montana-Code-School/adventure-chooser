@@ -4,10 +4,29 @@
     <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="jQuery.js"></script>
+    <script src='brian_story_editor.js'></script>
+    <script src='objectToServer.js'></script>
   </head>
   <body>
     <div class="title_graphic">
       <img src="img/title_image.png"/>
     </div>
-    
+    <h2>Create a Fable using CYAML syntax</h2>
+    <div class="content">
+      <h2>Example story: </h2>
+      <p>
+        ##&ltstart&gt You wake up on Sunday morning. You think, "I should practice coding."<br />
+        -O&ltcoding&gt Practice coding? <br />
+        -O&ltelse&gt Do something else? <br />
+        ##&ltcoding&gt You get better at coding. <br />
+        -O&ltsuccess&gt You continue practicing daily. <br />
+        ##&ltsuccess&gt You get a job! <br />
+        ##&ltelse&gt You get worse at coding.
+      </p>
+      <h1 style="margin-left: -50%">Title</h1>
+      <input id = "title" name="title" style="margin-left: 20%">
+      <textarea id = "text"></textarea>
+      <input id="createStory" type="button" value="Submit">
+    </div>
+  </body>
 </html>

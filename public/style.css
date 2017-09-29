@@ -3,6 +3,14 @@ body {
   margin: 50px;
 }
 
+h2 {
+  text-align: center;
+  font-size: 108px;
+  color: #7401b2;
+  font-family: "Lobster Two", Helvetica, sans-serif;
+  -webkit-text-stroke: 0.1px #3b005b;
+}
+
 .login {
   border-radius: 35px;
   margin: 15%;
@@ -74,10 +82,19 @@ body {
 }
 
 .content {
+  padding: 75px;
   border-radius: 35px;
-  margin: 200px;
+  margin: 125px;
   background-color: rgba(255, 255, 255, 0.5);
   align-content: center;
+}
+
+.content h1 {
+  margin-bottom: -5px;
+  margin-top: -20px;
+  font-size: 72px;
+  font-family: "Lobster Two", Helvetica, sans-serif;
+  text-align: center;
 }
 
 .content p {
@@ -86,4 +103,40 @@ body {
   font-family: "Lobster Two", Helvetica, sans-serif;
   font-style: italic;
   font-size: 45px;
+}
+
+.content input {
+  font-size: 30px;
+  text-align: center;
+  width: 25%;
+  height: 50px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  align-self: auto;
+}
+
+.content textarea {
+  padding: 10px;
+  font-size: 30px;
+  width: 75%;
+  height: 500px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  align-self: auto;
+}
+
+.content textarea:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px blue;
+}
+
+.content input:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px blue;
 }
